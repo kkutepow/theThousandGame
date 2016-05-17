@@ -16,5 +16,9 @@ namespace TheThousandGame
         {
             InitializeComponent();
         }
+        private void QQ()
+        {
+
+        }
     }
 }
