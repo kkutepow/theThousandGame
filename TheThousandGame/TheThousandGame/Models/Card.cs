@@ -40,6 +40,10 @@ namespace TheThousandGame
             get
             {
                 Image img = Properties.Resources.Рубашка;
+                if (isVisible) 
+                {
+                    return img;
+                }
                 switch (this.Suit)
                 {
                     case Suits.Буби:
