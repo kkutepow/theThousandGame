@@ -39,11 +39,11 @@ namespace TheThousandGame
         {
             get
             {
-                Image img = Properties.Resources.Рубашка;
-                if (isVisible) 
+                if (!isVisible) 
                 {
-                    return img;
+                    return Properties.Resources.Рубашка;
                 }
+                Image img = null;
                 switch (this.Suit)
                 {
                     case Suits.Буби:

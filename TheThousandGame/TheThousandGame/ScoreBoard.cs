@@ -42,9 +42,9 @@ namespace TheThousandGame
             return this.panel;
         }
 
-        public void Update(object obj)
+        public void Update(object players)
         {
-            Player[] _players = (Player[])obj;
+            Player[] _players = (Player[])players;
             for (int i = 0; i < playerScores.Length; i++)
             {
                 playerScores[i].Text = _players[i].Name + "\n" + _players[i].Pts;

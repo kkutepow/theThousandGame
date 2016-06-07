@@ -28,7 +28,6 @@ namespace TheThousandGame
                 this.cards[i].Width = (int)(w * 0.3);
                 this.cards[i].Height = h;
                 this.cards[i].SizeMode = PictureBoxSizeMode.StretchImage;
-                this.cards[i].Image = Properties.Resources.Рубашка;
             }
 
             this.panel.Left = this.l;
@@ -40,8 +39,20 @@ namespace TheThousandGame
             return this.panel;
         }
 
-        public void Update(object obj)
+        public void Update(object tablepack)
         {
+            Pack _tablepack = (Pack)tablepack;
+            for (int i = 0; i < cards.Length; i++)
+            {
+                if (i < _tablepack.Count)
+                {
+                    this.cards[i].Image = _tablepack.Cards[i].Picture;
+                }
+                else
+                {
+                    this.cards[i].Image = null;
+                }
+            }
         }
     }
 }

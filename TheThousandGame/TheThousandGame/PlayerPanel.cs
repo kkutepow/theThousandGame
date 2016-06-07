@@ -8,7 +8,7 @@ namespace TheThousandGame
     {
         Panel panel = new Panel();
         Label name = new Label();
-        Label pts = new Label();
+        Label roundPts = new Label();
         PictureBox photo = new PictureBox();
         PictureBox[] cards = new PictureBox[8];
         int l, t, w, h;
@@ -22,25 +22,37 @@ namespace TheThousandGame
             photoCustomize();
             nameCustomize();
             cardsCustomize();
-            ptsCustomize();
+            roundPtsCustomize();
 
             this.panel.Left = this.l;
             this.panel.Top = this.t;
             this.panel.Width = this.w;
             this.panel.Height = this.h;
-            this.panel.BackColor = Color.LightPink;
+            this.panel.BackColor = Color.Transparent;
             this.panel.Controls.AddRange(cards);
             this.panel.Controls.Add(name);
             this.panel.Controls.Add(photo);
-            this.panel.Controls.Add(pts);
+            this.panel.Controls.Add(roundPts);
             return this.panel;
         }
         public void Update(object player)
         {
             var _player = (Player)player;
             this.name.Text = _player.Name;
-            this.pts.Text = _player.RoundPts.ToString();
+            this.roundPts.Text = _player.PlayerPack.Points.ToString();
             this.photo.Image = _player.Photo;
+            _player.PlayerPack.ClassicSort();
+            for (int i = 0; i < cards.Length; i++)
+            {
+                if (i < _player.PlayerPack.Count)
+                {
+                    this.cards[i].Image = _player.PlayerPack.Cards[i].Picture;
+                }
+                else
+                {
+                    this.cards[i].Image = null;
+                }
+            }
         }
 
         #region ***components customize***
@@ -54,7 +66,6 @@ namespace TheThousandGame
                 this.cards[i].Width = (int)(w * 0.1);
                 this.cards[i].Height = (int)(h * 0.5);
                 this.cards[i].SizeMode = PictureBoxSizeMode.StretchImage;
-                this.cards[i].Image = Properties.Resources.Рубашка;
             }
         }
         private void nameCustomize()
@@ -75,15 +86,15 @@ namespace TheThousandGame
             this.photo.Height = (int)(h * 0.65);
             this.photo.SizeMode = PictureBoxSizeMode.StretchImage;
         }
-        private void ptsCustomize()
+        private void roundPtsCustomize()
         {
-            this.pts.Left = (int)(w * 0.75);
-            this.pts.Top = (int)(h * 0.0);
-            this.pts.Width = (int)(w * 0.25);
-            this.pts.Height = (int)(h * 1.0);
-            this.pts.Font = new Font("consolas", 19);
-            this.pts.ForeColor = Color.SteelBlue;
-            this.pts.TextAlign = ContentAlignment.MiddleCenter;
+            this.roundPts.Left = (int)(w * 0.75);
+            this.roundPts.Top = (int)(h * 0.0);
+            this.roundPts.Width = (int)(w * 0.25);
+            this.roundPts.Height = (int)(h * 1.0);
+            this.roundPts.Font = new Font("consolas", 19);
+            this.roundPts.ForeColor = Color.SteelBlue;
+            this.roundPts.TextAlign = ContentAlignment.MiddleCenter;
         }
         #endregion
     }
